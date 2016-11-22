@@ -17,9 +17,7 @@ public class ActivityManager {
     private static ActivityManager instance;
     private Activity currActivity;
 
-    private ActivityManager() {
-        throw new UnsupportedOperationException("cannot be instantiated");
-    }
+    private ActivityManager() {}
 
     /**
      * 获取实例

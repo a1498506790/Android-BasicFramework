@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.utils.ActivityManager;
+import com.bumptech.glide.Glide;
 
 import butterknife.ButterKnife;
 
@@ -161,6 +162,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        Glide.with(this).pauseRequests();
     }
 
     /**
