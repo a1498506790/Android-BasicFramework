@@ -5,17 +5,15 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.utils.ActivityManager;
-import com.bumptech.glide.Glide;
+import com.airsaid.android_basicframework.widget.slideback.SlideBackActivity;
 
 import butterknife.ButterKnife;
 
@@ -23,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by zhouyou on 2016/6/23.
  * Class desc: activity base class
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SlideBackActivity {
 
     protected Activity mContext;
     private Toolbar mToolbar;
@@ -38,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.mContext = this;
 
         // 设置布局
-        setContentView(getLayoutRes());
+        setContentView(LayoutInflater.from(this).inflate(getLayoutRes(), null));
         // 绑定依赖注入框架
         ButterKnife.bind(this);
 
@@ -152,23 +150,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         finish();
     }
 
-    @Override
+   /* @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(null != this.getCurrentFocus()){
-            /**
+            *//**
              * 点击空白位置 隐藏软键盘
-             */
+             *//*
             InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         }
         return super.onTouchEvent(event);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        Glide.with(this).pauseRequests();
-    }
+    }*/
 
     /**
      * 获取布局

@@ -1,10 +1,12 @@
 package com.airsaid.android_basicframework.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
+import android.view.View;
 
 import com.airsaid.android_basicframework.R;
+import com.airsaid.android_basicframework.TestActivity;
 import com.airsaid.android_basicframework.base.BaseActivity;
 import com.airsaid.android_basicframework.base.BaseBean;
 import com.airsaid.android_basicframework.bean.ArticleBean;
@@ -14,15 +16,9 @@ import com.airsaid.android_basicframework.http.HttpParams;
 import com.airsaid.android_basicframework.http.MyCallback;
 import com.airsaid.android_basicframework.http.api.UserService;
 
-import butterknife.BindView;
 import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
-
-    @BindView(R.id.imageView)
-    ImageView mImageView;
-    @BindView(R.id.imageView2)
-    ImageView mImageView2;
 
 
     @Override
@@ -33,7 +29,11 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreateActivity(@Nullable Bundle savedInstanceState) {
         initToolbar("测试标题");
+        
+    }
 
+    public void next(View v){
+        startActivity(new Intent(this, TestActivity.class));
     }
 
     /**

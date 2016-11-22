@@ -29,48 +29,45 @@ public class HttpClient {
     private static final boolean mIsSetCache = false;
 
     private static HttpClient mInstance = null;
-    private static Retrofit mRetrofit = null;
+    private Retrofit mRetrofit = null;
 
     /**
-     * 获取HttpClient实例（单例，使用默认服务器地址）
+     * 获取 HttpClient 实例（单例，使用默认服务器地址）
      * @return HttpClient 对象
      */
     public static HttpClient getIns(){
-        if (mInstance == null) {
-            synchronized (HttpClient.class){
-                if(mInstance == null) mInstance = new HttpClient();
-            }
-        }
-        return mInstance;
+        return getIns(null);
     }
 
     /**
-     * 获取HttpClient实例
-     * @param baseurl 服务器地址
+     * 获取 HttpClient 实例
+     * @param baseUrl 服务器地址
      * @return
      */
-    public static HttpClient getIns(String baseurl){
+    public static HttpClient getIns(String baseUrl){
         if (mInstance == null) {
             synchronized (HttpClient.class){
-                if(mInstance == null) mInstance = new HttpClient(baseurl);
+                if(mInstance == null){
+                    mInstance = new HttpClient(baseUrl);
+                }
             }
         }
         return mInstance;
     }
 
-    public HttpClient(){
-        configRetrofit(ApiConstant.API_SERVER_URL);
-    }
-
-    public HttpClient(String baseurl){
-        configRetrofit(baseurl);
+    private HttpClient(String baseUrl){
+        if(baseUrl != null){
+            configRetrofit(baseUrl);
+        }else{
+            configRetrofit(ApiConstant.API_SERVER_URL);
+        }
     }
 
     /**
      * 配置Retrofit
-     * @param baseurl 服务器地址
+     * @param baseUrl 服务器地址
      */
-    private void configRetrofit(String baseurl){
+    private void configRetrofit(String baseUrl){
         // 创建 OKHttp
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
@@ -125,7 +122,7 @@ public class HttpClient {
         // 构建Retrofit
         OkHttpClient okHttpClient = builder.build();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(baseurl)
+                .baseUrl(baseUrl)
 //                .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(CustomGsonConverterFactory.create())
                 .client(okHttpClient)
@@ -137,7 +134,7 @@ public class HttpClient {
      * @param clz api接口
      * @return
      */
-    public static <T> T createService(Class<T> clz){
+    public <T> T createService(Class<T> clz){
         return mRetrofit.create(clz);
     }
 
