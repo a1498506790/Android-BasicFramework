@@ -2,7 +2,7 @@ package com.airsaid.android_basicframework.http.api;
 
 
 import com.airsaid.android_basicframework.base.BaseBean;
-import com.airsaid.android_basicframework.bean.ArticleBean;
+import com.airsaid.android_basicframework.bean.TestBean;
 import com.airsaid.android_basicframework.bean.ListBean;
 import com.airsaid.android_basicframework.constants.ApiConstant;
 
@@ -18,7 +18,7 @@ import retrofit2.http.QueryMap;
  */
 public interface UserService {
 
-    @GET(ApiConstant.HOME_ARTICLES)
-    Call<BaseBean<ListBean<ArticleBean>>> homeArticles(@QueryMap() Map<String, String> params);
+    @GET(ApiConstant.TEST_URL)
+    Call<BaseBean<ListBean<TestBean>>> testData(@QueryMap() Map<String, String> params);
 
 }

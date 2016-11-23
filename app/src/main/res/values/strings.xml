@@ -7,14 +7,18 @@
     <string name="status_error_title">加载失败</string>
     <string name="status_error_content">请检查网络后重试</string>
     <string name="status_error_button">重试</string>
-    <!--Dialog-->
+    <!--refresh layout-->
+    <string name="refresh_pull_down">下拉以刷新</string>
+    <string name="refresh_pull_up">上拉加载更多</string>
+    <string name="refresh_release_loading_more">放开加载更多</string>
+    <string name="refresh_release_to_refresh">放开以刷新</string>
+    <string name="refresh_loading">加载中&#8230;</string>
+    <!--dialog-->
     <string name="dialog_title">温馨提示</string>
     <string name="dialog_affirm">确认</string>
     <string name="dialog_cancel">取消</string>
-    <!--Loading-->
+    <!--loading-->
     <string name="load_msg">正在加载中&#8230;</string>
-    <!--Hint-->
+    <!--hint-->
     <string name="input_hint_empty">输入的内容不能为空</string>
-
-
 </resources>

@@ -51,7 +51,7 @@ public abstract class MyCallback<T extends BaseBean> implements Callback<T> {
             ToastUtils.show(UiUtils.getContext(), "网络连接错误，请检查您的网络是否正常");
         }else if(t instanceof UnknownHostException){
             // DNS解析错误
-            ToastUtils.show(UiUtils.getContext(), "请求失败(请检查您的网络是否正常)");
+            ToastUtils.show(UiUtils.getContext(), "请求失败，请检查您的网络是否正常");
         }else if(t instanceof IllegalStateException){
             // 参数解析失败
             ToastUtils.show(UiUtils.getContext(), "请求失败(数据解析错误)");

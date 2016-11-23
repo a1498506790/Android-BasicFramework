@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.IndexActivity"/>
-        <activity android:name=".TestActivity"/>
+        <activity android:name=".ui.activity.test.StatusActivity"/>
+        <activity android:name=".ui.activity.test.RefreshActivity"/>
     </application>
 
 </manifest>

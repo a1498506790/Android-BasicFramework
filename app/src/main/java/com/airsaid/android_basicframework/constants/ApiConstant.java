@@ -15,7 +15,7 @@ public class ApiConstant {
     /** 视屏服务器地址 */
     public static final String VIDEO_SERVER_URL = "http://m42.lanbaoapp.com/";
 
-    /** 测试：文章列表 */
-    public static final String HOME_ARTICLES = "api/home/articles";
+    /** 测试 url */
+    public static final String TEST_URL = "api/home/medicines";
 
 }

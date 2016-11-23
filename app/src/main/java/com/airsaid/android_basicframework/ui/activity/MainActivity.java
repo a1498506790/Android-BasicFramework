@@ -3,19 +3,38 @@ package com.airsaid.android_basicframework.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.airsaid.android_basicframework.R;
-import com.airsaid.android_basicframework.TestActivity;
 import com.airsaid.android_basicframework.base.BaseActivity;
+import com.airsaid.android_basicframework.ui.activity.test.RefreshActivity;
+import com.airsaid.android_basicframework.ui.activity.test.StatusActivity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
 
-    private List<Integer> mList;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    private String[] mTitles = new String[]{
+              "多状态布局"
+            , "下拉刷新,上拉加载"
+    };
+    private Class[] mClasses = {
+              StatusActivity.class
+            , RefreshActivity.class
+    };
 
     @Override
     public int getLayoutRes() {
@@ -24,29 +43,28 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreateActivity(@Nullable Bundle savedInstanceState) {
-        initToolbar("测试标题");
-        mList = new ArrayList<>();
-        mList.add(R.id.toolbar);
-    }
+        Toolbar toolbar = initToolbar("基础框架");
+        toolbar.setNavigationIcon(null);
 
-    public void next(View v){
-        startActivity(new Intent(this, TestActivity.class));
-    }
-
-    public void load(View v){
-        showLoading();
-    }
-
-    public void empty(View v){
-        showEmpty();
-    }
-
-    public void error(View v){
-        showError(new View.OnClickListener() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(new MyAdapter(android.R.layout.simple_list_item_1, Arrays.asList(mTitles)));
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                mStatusLayout.showContent();
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                startActivity(new Intent(MainActivity.this, mClasses[i]));
             }
         });
+    }
+
+    public class MyAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+
+        public MyAdapter(int layoutResId, List<String> data) {
+            super(layoutResId, data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder baseViewHolder, String s) {
+            baseViewHolder.setText(android.R.id.text1, s);
+        }
     }
 }

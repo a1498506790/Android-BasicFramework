@@ -62,4 +62,24 @@
         <attr name="errorBackgroundColor" format="color"/>
     </declare-styleable>
 
+    <!--下拉刷新-->
+    <declare-styleable name="PullToRefresh">
+        <attr name="header_indicator" format="string"/>
+        <attr name="footer_indicator" format="string"/>
+    </declare-styleable>
+
+    <!--MasterDetail 进度条(兼容低版本)-->
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
 </resources>
