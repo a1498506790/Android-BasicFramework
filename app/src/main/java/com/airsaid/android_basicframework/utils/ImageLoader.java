@@ -27,7 +27,7 @@ public class ImageLoader  {
     // 默认占位图片资源
     private static final int PLACEHOLDER_IMAGE = R.mipmap.ic_default;
     // 加载错误显示图片
-    private static final int ERROR_IMAGE = R.mipmap.ic_default;
+    private static final int ERROR_IMAGE = R.mipmap.ic_default_error;
     // 默认头像
     private static final int DEFAULT_ICON = R.mipmap.ic_default_icon;
 

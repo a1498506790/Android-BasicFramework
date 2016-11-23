@@ -8,18 +8,14 @@ import android.view.View;
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.TestActivity;
 import com.airsaid.android_basicframework.base.BaseActivity;
-import com.airsaid.android_basicframework.base.BaseBean;
-import com.airsaid.android_basicframework.bean.ArticleBean;
-import com.airsaid.android_basicframework.bean.ListBean;
-import com.airsaid.android_basicframework.http.HttpClient;
-import com.airsaid.android_basicframework.http.HttpParams;
-import com.airsaid.android_basicframework.http.MyCallback;
-import com.airsaid.android_basicframework.http.api.UserService;
 
-import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+
+    private List<Integer> mList;
 
     @Override
     public int getLayoutRes() {
@@ -29,31 +25,28 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreateActivity(@Nullable Bundle savedInstanceState) {
         initToolbar("测试标题");
-        
+        mList = new ArrayList<>();
+        mList.add(R.id.toolbar);
     }
 
     public void next(View v){
         startActivity(new Intent(this, TestActivity.class));
     }
 
-    /**
-     * 请求网络，获取首页文章列表
-     */
-    private void getHomeArticles(int page){
-        HttpClient.getIns().createService(UserService.class)
-                .homeArticles(HttpParams.getIns().putPage(page))
-                .enqueue(new MyCallback<BaseBean<ListBean<ArticleBean>>>() {
-                    @Override
-                    public void onSucc(Response<BaseBean<ListBean<ArticleBean>>> response) {
-                        BaseBean<ListBean<ArticleBean>> body = response.body();
-
-                    }
-
-                    @Override
-                    public void onFail(String message) {
-
-                    }
-                });
+    public void load(View v){
+        showLoading();
     }
 
+    public void empty(View v){
+        showEmpty();
+    }
+
+    public void error(View v){
+        showError(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mStatusLayout.showContent();
+            }
+        });
+    }
 }
