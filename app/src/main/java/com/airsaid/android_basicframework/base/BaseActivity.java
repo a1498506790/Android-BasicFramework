@@ -49,9 +49,7 @@ public abstract class BaseActivity extends SlideBackActivity {
         this.mContext = this;
 
         // 设置布局
-        if (getStatusLayoutView() != null) {
-            setContentView(getStatusLayoutView());
-        }
+        setContentView(getStatusLayoutView());
 
         // 绑定依赖注入框架
         ButterKnife.bind(this);

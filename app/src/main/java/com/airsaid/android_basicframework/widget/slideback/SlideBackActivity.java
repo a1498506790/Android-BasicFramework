@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.airsaid.android_basicframework.BuildConfig;
 import com.airsaid.android_basicframework.R;
+import com.airsaid.android_basicframework.widget.StatusLayout;
 
 /**
  * 这个Activity实现了可以滑动左侧边缘退出Activity的功能，类似iOS的交互行为。
@@ -95,6 +96,7 @@ public class SlideBackActivity extends ActivityInterfaceImpl implements SlideFra
             doRealFinishForSlide();
         }
     };
+    private StatusLayout mStatusLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

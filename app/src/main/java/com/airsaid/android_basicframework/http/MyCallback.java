@@ -26,6 +26,7 @@ public abstract class MyCallback<T extends BaseBean> implements Callback<T> {
     public void onResponse(Call<T> call, Response<T> response) {
         LogUtils.e(TAG, "request success:  " + response.raw().toString());
         if(response.raw().code() == 200){
+            // 在这里对服务器规定的状态码进行相应判断
             if(response.body().status == 0){
                 onSucc(response);
             }else{
