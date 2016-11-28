@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.base.BaseActivity;
+import com.airsaid.android_basicframework.constants.AppConstants;
 import com.airsaid.android_basicframework.ui.activity.test.RefreshActivity;
 import com.airsaid.android_basicframework.ui.activity.test.StatusActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -28,11 +29,13 @@ public class MainActivity extends BaseActivity {
     RecyclerView mRecyclerView;
 
     private String[] mTitles = new String[]{
-              "多状态布局"
+              "带进度条 WebView"
+            , "多状态布局"
             , "下拉刷新,上拉加载"
     };
     private Class[] mClasses = {
-              StatusActivity.class
+              BrowserActivity.class
+            , StatusActivity.class
             , RefreshActivity.class
     };
 
@@ -51,7 +54,12 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                startActivity(new Intent(MainActivity.this, mClasses[i]));
+                Intent intent = new Intent(MainActivity.this, mClasses[i]);
+                if(i == 0){
+                    intent.putExtra(AppConstants.EXTRA_TITLE, mTitles[i]);
+                    intent.putExtra(AppConstants.EXTRA_URL, "https://github.com/Airsaid/Android-BasicFramework");
+                }
+                startActivity(intent);
             }
         });
     }

@@ -19,4 +19,8 @@ public class AppConstants {
 
     // SharedPreferences key Name
     public static String KEY_IS_FIRST_LOGIN = "is_first_login";
+
+    // Extra
+    public static String EXTRA_TITLE        = "title";
+    public static String EXTRA_URL          = "url";
 }
