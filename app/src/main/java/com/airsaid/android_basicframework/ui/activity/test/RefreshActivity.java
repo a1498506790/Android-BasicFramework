@@ -137,6 +137,7 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshView.O
 
     public class TestAdapter extends BaseQuickAdapter<TestBean, BaseViewHolder>{
 
+
         public TestAdapter(int layoutResId, List<TestBean> data) {
             super(layoutResId, data);
         }

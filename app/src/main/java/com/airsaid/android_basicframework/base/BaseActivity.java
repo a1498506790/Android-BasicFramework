@@ -300,6 +300,12 @@ public abstract class BaseActivity extends SlideBackActivity {
         return super.onTouchEvent(event);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        MPermissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
     /**
      * 获取布局
      */

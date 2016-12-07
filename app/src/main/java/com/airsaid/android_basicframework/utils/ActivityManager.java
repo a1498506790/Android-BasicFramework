@@ -65,7 +65,7 @@ public class ActivityManager {
     public void popAllActivityExceptOne(Class cls) {
         while (true) {
             Activity activity = getTopActivity();
-            if(null != activity && activity.getClass().equals(cls)){
+            if(null != activity && !activity.getClass().equals(cls)){
                 destroyActivity(activity);
             }else{
                 break;
