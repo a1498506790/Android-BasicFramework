@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.utils.ActivityManager;
+import com.airsaid.android_basicframework.utils.MPermissionUtils;
 import com.airsaid.android_basicframework.widget.StatusLayout;
 import com.airsaid.android_basicframework.widget.slideback.SlideBackActivity;
 
@@ -269,7 +271,6 @@ public abstract class BaseActivity extends SlideBackActivity {
 
     /**
      * 获取 Toolbar 所有显示的 View ID 集合
-     * @return
      */
     private List<Integer> getToolBarVisibleIds(){
         List<Integer> skipIds = null;
