@@ -11,20 +11,20 @@ import java.util.Stack;
  *
  * 自定义 Activity 管理栈。
  */
-public class ActivityManager {
+public class ActivityStack {
 
     private static Stack<Activity> activityStack;
-    private static ActivityManager instance;
+    private static ActivityStack instance;
     private Activity currActivity;
 
-    private ActivityManager() {}
+    private ActivityStack() {}
 
     /**
      * 获取实例
      */
-    public static ActivityManager getInstance() {
+    public static ActivityStack getInstance() {
         if (instance == null) {
-            instance = new ActivityManager();
+            instance = new ActivityStack();
         }
         return instance;
     }

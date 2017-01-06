@@ -17,7 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
-import com.airsaid.android_basicframework.utils.ActivityManager;
+import com.airsaid.android_basicframework.utils.ActivityStack;
 import com.airsaid.android_basicframework.utils.MPermissionUtils;
 import com.airsaid.android_basicframework.widget.StatusLayout;
 import com.airsaid.android_basicframework.widget.slideback.SlideBackActivity;
@@ -57,6 +57,9 @@ public abstract class BaseActivity extends SlideBackActivity {
         ButterKnife.bind(this);
 
         onCreateActivity(savedInstanceState);
+
+        // 将 Activity 推入栈中
+        ActivityStack.getInstance().pushActivity(this);
     }
 
     @Override
@@ -67,13 +70,11 @@ public abstract class BaseActivity extends SlideBackActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ActivityManager.getInstance().pushActivity(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityManager.getInstance().popActivity(this);
     }
 
     /**
@@ -313,4 +314,11 @@ public abstract class BaseActivity extends SlideBackActivity {
     public abstract int getLayoutRes();
 
     public abstract void onCreateActivity(@Nullable Bundle savedInstanceState);
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 将 Activity 弹出栈
+        ActivityStack.getInstance().popActivity(this);
+    }
 }
