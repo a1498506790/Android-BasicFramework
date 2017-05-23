@@ -92,7 +92,7 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshView.O
                 .testData(HttpParams.getIns().putPage(page))
                 .enqueue(new MyCallback<BaseBean<ListBean<TestBean>>>() {
                     @Override
-                    public void onSucc(Response<BaseBean<ListBean<TestBean>>> response) {
+                    public void onSuccess(Response<BaseBean<ListBean<TestBean>>> response) {
                         showContent();
                         mRefreshView.onFinishLoading();
                         ListBean<TestBean> data = response.body().getData();

@@ -79,7 +79,7 @@ public class ImageUtils {
     }
 
     private static String findTemFilePath(String path) {
-        String tempath = AppConfig.CHCHE_IMAGE_PATH;
+        String tempath = AppConfig.CACHE_IMAGE_PATH;
         File temDir = new File(tempath);
         if(!temDir.exists()) {
             temDir.mkdirs();

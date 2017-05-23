@@ -1,10 +1,10 @@
 package com.airsaid.android_basicframework.constants;
 
 /**
- * Created by zhouyou on 2016/6/29.
- * Class desc:
- *
- * 该类用于定义Eventbus的消息常量。
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc 该类用于定义 Eventbus 的消息常量。
  */
 public class MsgConstants {
 

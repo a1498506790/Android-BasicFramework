@@ -17,18 +17,24 @@ import com.airsaid.android_basicframework.R;
 import butterknife.ButterKnife;
 
 /**
- * Created by zhouyou on 2016/6/27.
- * Class desc: fragment base class
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc Fragment 基类
  */
 public abstract class BaseFragment extends Fragment {
+
+    protected static String TAG;
 
     private View mView;
     private Toolbar mToolbar;
     private Activity mActivity;
     protected Context mContext;
-    protected static String TAG;
-    private AppCompatActivity mCompatActivity;
     protected LayoutInflater mLayoutInflater;
+    private AppCompatActivity mCompatActivity;
+
+    protected boolean mIsVisiable; // 是否可见
+    protected boolean mIsViewCreate; // 是否已经调用了 onCreateView
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mIsViewCreate = true;
         // 绑定依赖注入框架
         ButterKnife.bind(this, mView);
     }
@@ -150,11 +157,29 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * 返回事件，默认退出当前 activity
+     * 返回，默认退出当前 activity
      */
     protected void onBack(){
+        finish();
+    }
+
+    /**
+     * 销毁当前挂载的 activity
+     */
+    protected void finish(){
         mActivity.finish();
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        mIsVisiable = isVisibleToUser;
+        if(mIsVisiable && mIsViewCreate){
+            onLazyLoadData();
+        }
+    }
+
+    protected void onLazyLoadData(){}
 
     /**
      * 查找当前控件
@@ -170,8 +195,4 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void onCreateFragment(@Nullable Bundle savedInstanceState);
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 }

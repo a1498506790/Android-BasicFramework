@@ -9,17 +9,35 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * Created by zhouyou on 2016/6/24.
- * Class desc:
- *
- * 与屏幕相关的工具类，
- * 可以方便的设置全屏模式，
- * 可以得到屏幕的宽度高度
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/4
+ * @desc 屏幕相关工具类。
  */
 public class WindowUtils {
 
     private WindowUtils() {
         throw new UnsupportedOperationException("cannot be instantiated");
+    }
+
+    /**
+     * 获得屏幕宽度
+     */
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
+    /**
+     * 获得屏幕宽高度
+     */
+    public static int getScreenHeight(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
     }
 
     /**
@@ -82,50 +100,4 @@ public class WindowUtils {
         }
         return result;
     }
-
-    /**
-     * 推荐的获取屏幕长宽的方式,但需要API13
-     *
-     * @return 装载了屏幕长宽的数组，int[0] = width,int[1] = height
-     */
-    @SuppressLint("NewApi")
-    public static int[] getWindow_WH(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return new int[]{size.x, size.y};
-    }
-
-    /**
-     * 获取屏幕长宽的方式(仅在低版本中使用)
-     *
-     * @return 装载了屏幕长宽的数组，int[0] = width,int[1] = height
-     */
-    @Deprecated
-    public static int[] getWindow_wh(Activity activity) {
-        int w = activity.getWindowManager().getDefaultDisplay().getWidth();//获得手机屏幕的宽度
-        int h = activity.getWindowManager().getDefaultDisplay().getHeight();//获得手机屏幕的高度
-        return new int[]{w, h};
-    }
-
-    /**
-     * 获得屏幕宽度
-     */
-    public static int getScreenWidth(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(outMetrics);
-        return outMetrics.widthPixels;
-    }
-
-    /**
-     * 获得屏幕宽高度
-     */
-    public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(outMetrics);
-        return outMetrics.heightPixels;
-    }
-
 }

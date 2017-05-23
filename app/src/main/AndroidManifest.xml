@@ -8,6 +8,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!--写入SD卡-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--访问网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--访问 Wifi 状态-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--读取手机状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
 
     <application
         android:name=".base.BaseApplication"
@@ -26,7 +33,10 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.IndexActivity"/>
-        <activity android:name=".ui.activity.BrowserActivity"/>
+        <!--兼容视频播放-->
+        <activity
+            android:name=".ui.activity.BrowserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.activity.test.StatusActivity"/>
         <activity android:name=".ui.activity.test.RefreshActivity"/>
     </application>

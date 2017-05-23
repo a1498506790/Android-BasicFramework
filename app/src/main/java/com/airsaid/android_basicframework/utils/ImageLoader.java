@@ -7,7 +7,7 @@ import android.os.Build;
 import android.widget.ImageView;
 
 import com.airsaid.android_basicframework.R;
-import com.airsaid.android_basicframework.constants.ApiConstant;
+import com.airsaid.android_basicframework.constants.Api;
 import com.airsaid.android_basicframework.widget.transform.CropCircleTransformation;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -22,12 +22,12 @@ import java.io.File;
  *
  * 图片加载类，对 Glide 进行了封装。
  */
-public class ImageLoader  {
+public class ImageLoader {
 
     // 默认占位图片资源
     private static final int PLACEHOLDER_IMAGE = R.mipmap.ic_default;
     // 加载错误显示图片
-    private static final int ERROR_IMAGE = R.mipmap.ic_default_error;
+    private static final int ERROR_IMAGE = R.mipmap.ic_default;
     // 默认头像
     private static final int DEFAULT_ICON = R.mipmap.ic_default_icon;
 
@@ -146,7 +146,7 @@ public class ImageLoader  {
         if(object instanceof String){
             String imageUrl = (String) object;
             if(!imageUrl.startsWith("http://")){
-                imageUrl = ApiConstant.IMG_SERVER_URL.concat(imageUrl);
+                imageUrl = Api.IMG_SERVER_URL.concat(imageUrl);
             }
             builder = with.load(imageUrl);
         }else if(object instanceof Integer){
@@ -189,4 +189,6 @@ public class ImageLoader  {
         }
         return context;
     }
+
+
 }

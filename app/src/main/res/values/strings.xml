@@ -1,24 +1,50 @@
 <resources>
     <string name="app_name">Android-BasicFramework</string>
 
+    <!--network -->
+    <string name="request_fail">请求失败，请稍后再试</string>
+    <string name="request_time_out_fail">网络连接超时，请稍后再试</string>
+    <string name="request_connect_fail">网络连接错误，请检查您的网络是否正常</string>
+    <string name="request_unknown_host_fail">请求失败，请检查您的网络是否正常</string>
+    <string name="request_illegal_state_fail">请求失败，数据解析错误</string>
+    <string name="request_server_busy_fail">服务器繁忙，请稍后再试</string>
+
     <!--status-->
     <string name="status_empty_title">暂无数据</string>
     <string name="status_empty_content">请稍后重试</string>
     <string name="status_error_title">加载失败</string>
     <string name="status_error_content">请检查网络后重试</string>
     <string name="status_error_button">重试</string>
+
     <!--refresh layout-->
     <string name="refresh_pull_down">下拉以刷新</string>
     <string name="refresh_pull_up">上拉加载更多</string>
     <string name="refresh_release_loading_more">放开加载更多</string>
     <string name="refresh_release_to_refresh">放开以刷新</string>
     <string name="refresh_loading">加载中&#8230;</string>
+
+    <!--title-->
+    <string name="title_url_fail">网址错误</string>
+
     <!--dialog-->
     <string name="dialog_title">温馨提示</string>
     <string name="dialog_affirm">确认</string>
     <string name="dialog_cancel">取消</string>
+
     <!--loading-->
     <string name="load_msg">正在加载中&#8230;</string>
+    <string name="load_login">正在登录中&#8230;</string>
+    <string name="load_update">正在修改中&#8230;</string>
+    <string name="load_delete">正在删除中&#8230;</string>
+    <string name="load_send_code">正在发送验证码&#8230;</string>
+
     <!--hint-->
     <string name="input_hint_empty">输入的内容不能为空</string>
+    <string name="empty_data">暂无数据</string>
+
+    <!--toast-->
+    <string name="toast_load_fail">加载失败</string>
+
+    <!--other-->
+    <string name="rmb">¥</string>
 </resources>

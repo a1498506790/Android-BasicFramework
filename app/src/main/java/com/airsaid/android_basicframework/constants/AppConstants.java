@@ -1,10 +1,11 @@
 package com.airsaid.android_basicframework.constants;
 
+
 /**
- * Created by zhouyou on 2016/6/22.
- * Class desc:
- *
- * APP 常量类，用于存放APP中用到的常量。
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc APP 常量类，用于存放 APP 中用到的常量。
  */
 public class AppConstants {
 
@@ -20,7 +21,7 @@ public class AppConstants {
     // SharedPreferences key Name
     public static String KEY_IS_FIRST_LOGIN = "is_first_login";
 
-    // Extra
+    // extra
     public static String EXTRA_TITLE        = "title";
     public static String EXTRA_URL          = "url";
 }

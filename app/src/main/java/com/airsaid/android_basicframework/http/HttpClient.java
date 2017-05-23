@@ -2,7 +2,7 @@ package com.airsaid.android_basicframework.http;
 
 
 import com.airsaid.android_basicframework.base.BaseApplication;
-import com.airsaid.android_basicframework.constants.ApiConstant;
+import com.airsaid.android_basicframework.constants.Api;
 import com.airsaid.android_basicframework.constants.AppConfig;
 import com.airsaid.android_basicframework.http.gson.CustomGsonConverterFactory;
 import com.airsaid.android_basicframework.utils.NetUtils;
@@ -19,9 +19,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 
+
 /**
- * Created by zhouyou on 2016/6/23.
- * Class desc: 对 retrofit 进行二次封装
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc 对 retrofit 进行二次封装
  */
 public class HttpClient {
 
@@ -59,7 +62,7 @@ public class HttpClient {
         if(baseUrl != null){
             configRetrofit(baseUrl);
         }else{
-            configRetrofit(ApiConstant.API_SERVER_URL);
+            configRetrofit(Api.API_SERVER_URL);
         }
     }
 
@@ -74,7 +77,7 @@ public class HttpClient {
         // 设置缓存
         if(mIsSetCache){
             File cacheFile = new File(AppConfig.CACHE_PATH);
-            Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
+            Cache cache = new Cache(cacheFile, AppConfig.CACHE_DATE);
             Interceptor cacheInterceptor = new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -90,7 +93,7 @@ public class HttpClient {
                         // 有网络时 设置缓存超时时间0个小时
                         response.newBuilder()
                                 .header("Cache-Control", "public, max-age=" + maxAge)
-                                .removeHeader("zhouyou")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                                .removeHeader("nyn")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
                                 .build();
                     } else {
                         // 无网络时，设置超时为4周
@@ -130,9 +133,7 @@ public class HttpClient {
     }
 
     /**
-     * 创建Api接口
-     * @param clz api接口
-     * @return
+     * 创建 api接口
      */
     public <T> T createService(Class<T> clz){
         return mRetrofit.create(clz);

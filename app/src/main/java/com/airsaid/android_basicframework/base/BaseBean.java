@@ -1,12 +1,33 @@
 package com.airsaid.android_basicframework.base;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class BaseBean<T> implements Serializable {
+public class BaseBean<T> implements Parcelable {
 
-    public T data;          //数据
-    public int status;      //状态码
-    public String msg;      //请求结果
+    public static final String STATUS = "status";
+    public static final String MSG    = "msg";
+
+    public T data;          // 数据
+    public int status;      // 状态码
+    public String msg;      // 请求结果
+
+    protected BaseBean(Parcel in) {
+        status = in.readInt();
+        msg = in.readString();
+    }
+
+    public static final Creator<BaseBean> CREATOR = new Creator<BaseBean>() {
+        @Override
+        public BaseBean createFromParcel(Parcel in) {
+            return new BaseBean(in);
+        }
+
+        @Override
+        public BaseBean[] newArray(int size) {
+            return new BaseBean[size];
+        }
+    };
 
     public T getData() {
         return data;
@@ -39,5 +60,17 @@ public class BaseBean<T> implements Serializable {
                 ", status=" + status +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(status);
+        parcel.writeString(msg);
+        parcel.writeValue(data);
     }
 }

@@ -33,6 +33,49 @@ public class AppUtils {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
+    private static Context getContext(){
+        return UiUtils.getContext();
+    }
+
+    /**
+     * 获取当前应用包名
+     * @return 如: com.airsaid.app
+     */
+    public static String getPackageName(){
+        return UiUtils.getContext().getPackageName();
+    }
+
+    /**
+     * 获取当前应用版本名称
+     * @return 如: 1.0.0
+     */
+    public static String getAppVersionName(){
+        String versionName = "";
+        try {
+            PackageInfo packageInfo = getContext().getPackageManager()
+                    .getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionName;
+    }
+
+    /**
+     * 获取当前应用最后一次更新的时间
+     * @return 时间戳
+     */
+    public static long getLastUpdateTime(){
+        try {
+            PackageInfo packageInfo = getContext().getPackageManager()
+                    .getPackageInfo(getPackageName(), 0);
+            return packageInfo.lastUpdateTime;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     /**
      * 获取应用名字
      * @param context
@@ -102,17 +145,6 @@ public class AppUtils {
         return sourceDir;
     }
 
-    public static String getAppVersionName(Context context, String packageName) {
-        String appVersion = null;
-        try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
-            appVersion = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return appVersion;
-    }
-
     public static int getAppVersionCode(Context context, String packageName) {
         int appVersionCode = 0;
         try {
@@ -126,10 +158,6 @@ public class AppUtils {
 
     public static String getAppInstaller(Context context, String packageName) {
         return context.getPackageManager().getInstallerPackageName(packageName);
-    }
-
-    public static String getAppPackageName(Context context) {
-        return context.getPackageName();
     }
 
     public static boolean hasPermission(Context context, String permission) {

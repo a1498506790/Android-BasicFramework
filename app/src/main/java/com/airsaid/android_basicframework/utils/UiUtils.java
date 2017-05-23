@@ -6,11 +6,16 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.base.BaseApplication;
@@ -88,6 +93,16 @@ public class UiUtils {
     }
 
     /**
+     * 通过图片名称获取图片资源 id
+     * @param imageName 图片名称
+     * @return 图片资源 id
+     */
+    public static int getImageResIdByName(String imageName){
+        return getResources().getIdentifier(imageName, "mipmap"
+                , AppUtils.getPackageName());
+    }
+
+    /**
      * 加载布局（使用View方式）
      *
      * @param resource 布局资源id
@@ -129,5 +144,45 @@ public class UiUtils {
             // 设置为透明
             window.setStatusBarColor(0);
         }
+    }
+
+
+    /**
+     * 获取列表为空时显示的 Empty View
+     * @return 默认 Empty View
+     */
+    public static View getEmptyView(Context context, RecyclerView recyclerView){
+        return getEmptyView(context, recyclerView, null, -1);
+    }
+
+    /**
+     * 获取列表为空时显示的 Empty View
+     * @param emptyText 提示文字
+     * @return Empty View
+     */
+    public static View getEmptyView(Context context, RecyclerView recyclerView, String emptyText){
+        return getEmptyView(context, recyclerView, emptyText, -1);
+    }
+
+    /**
+     * 获取列表为空时显示的 Empty View
+     * @param emptyText  提示文字
+     * @param emptyImgId 图片
+     * @return Empty View
+     */
+    public static View getEmptyView(Context context, RecyclerView recyclerView, String emptyText, int emptyImgId){
+        View emptyView = LayoutInflater.from(context).inflate(R.layout.view_empty, (ViewGroup) recyclerView.getParent(), false);
+        if(emptyText != null){
+            ((TextView)emptyView.findViewById(R.id.txt_empty)).setText(emptyText);
+        }
+        if(emptyImgId != -1){
+            ((ImageView)emptyView.findViewById(R.id.img_empty)).setImageResource(emptyImgId);
+        }
+        return emptyView;
+    }
+
+    /** 显示不带 null 的字符 */
+    public static String show(String text){
+        return text != null ? text : "";
     }
 }

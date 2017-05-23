@@ -53,11 +53,12 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.setAdapter(new MyAdapter(android.R.layout.simple_list_item_1, Arrays.asList(mTitles)));
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                Intent intent = new Intent(MainActivity.this, mClasses[i]);
-                if(i == 0){
-                    intent.putExtra(AppConstants.EXTRA_TITLE, mTitles[i]);
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(MainActivity.this, mClasses[position]);
+                if(position == 0){
+                    intent.putExtra(AppConstants.EXTRA_TITLE, mTitles[position]);
                     intent.putExtra(AppConstants.EXTRA_URL, "https://github.com/Airsaid/Android-BasicFramework");
+
                 }
                 startActivity(intent);
             }

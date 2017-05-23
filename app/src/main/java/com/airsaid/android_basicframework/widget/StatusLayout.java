@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
-import com.airsaid.android_basicframework.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -172,7 +170,6 @@ public class StatusLayout extends RelativeLayout {
 
 //            contentViews.add(child);
             contentViews.addAll(getAllChildren(child));
-            Log.i("StatusLayout", "sub children count of StatusLayout is" + contentViews.size());
         }
     }
 
@@ -506,8 +503,6 @@ public class StatusLayout extends RelativeLayout {
     private void setContentVisibility(boolean visible, List<Integer> skipIds) {
         boolean parentVisibleFlag = false;
         for (View v : contentViews) {
-            LogUtils.e("test", "visible: " + visible);
-            LogUtils.e("test", "v id: " + v.getId());
             // when visible is true,which means set content Layout, the skipIds component need to be hide
             if (visible) {
                 if (skipIds.contains(v.getId())) {
@@ -527,7 +522,6 @@ public class StatusLayout extends RelativeLayout {
                 setParentToVisible(v);
             }
             int visibility = v.getVisibility();
-            Log.i("StatusLayout", v + " view id " + v.getId() + " visibility " + visibility);
         }
     }
 

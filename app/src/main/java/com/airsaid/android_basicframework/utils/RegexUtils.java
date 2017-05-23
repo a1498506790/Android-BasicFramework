@@ -1,27 +1,10 @@
-/*
- * Copyright (C) 2013 Peng fei Pan <sky@xiaopan.me>
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.airsaid.android_basicframework.utils;
 
-
 /**
- * Created by zhouyou on 2016/6/24.
- * Class desc:
- *
- * 正则表达式工具类，提供一些常用的正则表达式
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/3/16
+ * @desc 正则表达式工具类，提供一些常用的正则表达式。
  */
 public class RegexUtils {
 
@@ -35,10 +18,9 @@ public class RegexUtils {
     public static final String IP_REGEX = "^((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))$";
 
     /**
-     * 匹配手机号码的正则表达式
-     * 支持130——139、150——153、155——159、180、183、185、186、188、189号段
+     * 匹配手机号码的正则表达式，只校验 1 开头并且是 11 位数的。
      */
-    public static final String PHONE_NUMBER_REGEX = "^1{1}(3{1}\\d{1}|5{1}[012356789]{1}|8{1}[035689]{1})\\d{8}$";
+    public static final String PHONE_NUMBER_REGEX = "^1(3|4|5|7|8)[0-9]\\d{8}$";
 
     /**
      * 匹配邮箱的正则表达式
@@ -75,6 +57,17 @@ public class RegexUtils {
      * 匹配网址的正则表达式
      */
     public static final String LINK = "^(http://|https://)?((?:[A-Za-z0-9]+-[A-Za-z0-9]+|[A-Za-z0-9]+)\\.)+([A-Za-z]+)[/\\?\\:]?.*$";
+
+    /**
+     * 匹配密码的正则表达式(不能以数字开头,6-15位,并且是包含数字和字母的组合)
+     */
+    public static final String PASSWORD = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+
+    /**
+     * 金额的正则，格式 XXXX （整数位不超过10位，无小数位）或者XXXX.xx（整数位不超过10位，有小数位时必须为2位）
+     * 最大金额 9999999999.99 最小金额 0
+     */
+    public static final String MONEY = "^(([0-9]|([1-9][0-9]{0,9}))((\\.[0-9]{1,2})?))$";
 
     /**
      * 匹配给定的字符串是否是一个邮箱账号，"www."可省略不写
@@ -171,5 +164,41 @@ public class RegexUtils {
      */
     public static boolean isLinkAvailable(String string) {
         return string.matches(LINK);
+    }
+
+    /**
+     * 校验手机号是否正确
+     * @param phone 手机号
+     * @return true: 正确 false: 不正确
+     */
+    public static boolean checkPhone(String phone){
+        return phone.matches(PHONE_NUMBER_REGEX);
+    }
+
+    /**
+     * 校验密码是否输入正确
+     * @param password 密码
+     * @return true: 正确 false：不正确
+     */
+    public static boolean checkPassword(String password){
+        return password.matches(PASSWORD);
+    }
+
+    /**
+     * 校验验证码是否输入正确
+     * @param code 验证码
+     * @return true: 正确 false：不正确
+     */
+    public static boolean checkCode(String code){
+        return code.length() == 6;
+    }
+
+    /**
+     * 校验输入的金额是否正确
+     * @param money 金额
+     * @return true: 正确 false：不正确
+     */
+    public static boolean checkMoney(String money){
+        return money.matches(MONEY);
     }
 }

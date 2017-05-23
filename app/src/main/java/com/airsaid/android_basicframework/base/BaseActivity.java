@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -28,20 +29,25 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
- * Created by zhouyou on 2016/6/23.
- * Class desc: activity base class
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc Activity 基类
  */
 public abstract class BaseActivity extends SlideBackActivity {
 
     protected static String TAG;
     protected Activity mContext;
     private Toolbar mToolbar;
+
     protected StatusLayout mStatusLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 设置 Activity 屏幕方向
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // 设置不自动弹出软键盘
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         // 隐藏 ActionBar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         // 设置 TAG
@@ -161,7 +167,7 @@ public abstract class BaseActivity extends SlideBackActivity {
     }
 
     /**
-     * 返回
+     * 返回，默认退出当前 activity
      */
     protected void onBack() {
         finish();

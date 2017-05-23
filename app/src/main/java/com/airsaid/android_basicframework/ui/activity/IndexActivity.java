@@ -22,8 +22,10 @@ import com.airsaid.android_basicframework.utils.SPUtils;
 import butterknife.BindView;
 
 /**
- * Created by zhouyou on 2016/9/1.
- * Class desc: 引导页 Activity
+ * @author Airsaid
+ * @github https://github.com/airsaid
+ * @date 2017/5/22
+ * @desc 引导页 Activity
  */
 public class IndexActivity extends BaseActivity {
 
