@@ -145,7 +145,7 @@ public class ImageLoader {
         DrawableRequestBuilder builder = null;
         if(object instanceof String){
             String imageUrl = (String) object;
-            if(!imageUrl.startsWith("http://")){
+            if(!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")){
                 imageUrl = Api.IMG_SERVER_URL.concat(imageUrl);
             }
             builder = with.load(imageUrl);
