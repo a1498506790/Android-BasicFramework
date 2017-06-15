@@ -184,8 +184,10 @@ public class ImageLoader {
             context = ((android.app.Fragment) object).getActivity();
         }else if(object instanceof android.support.v4.app.Fragment){
             context = ((android.support.v4.app.Fragment) object).getActivity();
-        }else{
+        }else if(object instanceof Activity){
             context = (Activity) object;
+        }else{
+            context = UiUtils.getContext();
         }
         return context;
     }
