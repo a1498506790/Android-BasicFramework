@@ -179,6 +179,8 @@ public class BannerLayout extends RelativeLayout {
 
     //添加本地图片路径
     public void setViewRes(List<Integer> viewRes) {
+        // 移除所有 View，避免多次设置导致 View 重叠
+        removeAllViews();
         List<View> views = new ArrayList<>();
         itemCount = viewRes.size();
         //主要是解决当item为小于3个的时候滑动有问题，这里将其拼凑成3个以上
@@ -220,6 +222,8 @@ public class BannerLayout extends RelativeLayout {
 
     //添加网络图片路径
     public void setViewUrls(List<String> urls) {
+        // 移除所有 View，避免多次设置导致 View 重叠
+        removeAllViews();
         List<View> views = new ArrayList<>();
         itemCount = urls.size();
         //主要是解决当item为小于3个的时候滑动有问题，这里将其拼凑成3个以上
