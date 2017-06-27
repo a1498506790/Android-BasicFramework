@@ -6,7 +6,7 @@
 
     <include layout="@layout/toolbar"/>
 
-    <com.airsaid.android_basicframework.widget.refresh.PullToRefreshView
+    <com.airsaid.android_basicframework.widget.refresh.PullToRefreshLayout
         android:id="@+id/refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +17,6 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>
 
-    </com.airsaid.android_basicframework.widget.refresh.PullToRefreshView>
+    </com.airsaid.android_basicframework.widget.refresh.PullToRefreshLayout>
 
 </LinearLayout>

@@ -22,7 +22,7 @@ import com.airsaid.android_basicframework.R;
  * 实现对子view 的上拉和下拉的监听实现，提供下拉和下拉的视图和接口
  *
  */
-public class PullToRefreshView extends ViewGroup {
+public class PullToRefreshLayout extends ViewGroup {
 
     private LayoutInflater mInflater;
     private OverScroller mScroller;
@@ -53,7 +53,7 @@ public class PullToRefreshView extends ViewGroup {
     private int mFooterHoldingPosition;
 
     private boolean isPullDownEnable = true;
-    private boolean isPullUpEnable = true;
+    private boolean isPullUpEnable = false;
 
     private float mLastX;
     private float mLastY;
@@ -69,15 +69,15 @@ public class PullToRefreshView extends ViewGroup {
     private boolean isLoading = false;
     private long mStartLoadingTime;
 
-    public PullToRefreshView(Context context) {
+    public PullToRefreshLayout(Context context) {
         super(context);
     }
 
-    public PullToRefreshView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PullToRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public PullToRefreshView(Context context, AttributeSet attrs) {
+    public PullToRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mInflater = LayoutInflater.from(context);
         mScroller = new OverScroller(context);

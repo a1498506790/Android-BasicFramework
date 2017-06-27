@@ -14,10 +14,10 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            wheel:matProg_barColor="@color/colorPrimary"
+            wheel:matProg_barColor="@color/colorAccent"
             wheel:matProg_barWidth="2dp"
             wheel:matProg_progressIndeterminate="false"
-            wheel:matProg_rimColor="@color/colorPrimary"
+            wheel:matProg_rimColor="@color/colorAccent"
             wheel:matProg_rimWidth="2dp"
             wheel:matProg_spinSpeed="0.64"/>
 

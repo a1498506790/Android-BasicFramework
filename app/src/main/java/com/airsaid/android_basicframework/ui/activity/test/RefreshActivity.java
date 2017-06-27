@@ -15,7 +15,7 @@ import com.airsaid.android_basicframework.http.HttpClient;
 import com.airsaid.android_basicframework.http.HttpParams;
 import com.airsaid.android_basicframework.http.MyCallback;
 import com.airsaid.android_basicframework.http.api.UserService;
-import com.airsaid.android_basicframework.widget.refresh.PullToRefreshView;
+import com.airsaid.android_basicframework.widget.refresh.PullToRefreshLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -31,12 +31,12 @@ import retrofit2.Response;
  * <p>
  * 演示下拉刷新/上拉加载更多
  */
-public class RefreshActivity extends BaseActivity implements PullToRefreshView.OnRefreshListener {
+public class RefreshActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.refreshView)
-    PullToRefreshView mRefreshView;
+    PullToRefreshLayout mRefreshView;
 
     private List<TestBean> mList = new ArrayList<>();
     private TestAdapter mAdapter;
