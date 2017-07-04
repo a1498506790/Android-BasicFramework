@@ -2,8 +2,8 @@ package com.airsaid.android_basicframework.http.api;
 
 
 import com.airsaid.android_basicframework.base.BaseBean;
-import com.airsaid.android_basicframework.bean.TestBean;
 import com.airsaid.android_basicframework.bean.ListBean;
+import com.airsaid.android_basicframework.bean.TestBean;
 import com.airsaid.android_basicframework.constants.Api;
 
 import java.util.Map;

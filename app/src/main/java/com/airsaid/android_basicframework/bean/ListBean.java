@@ -18,7 +18,7 @@ public class ListBean<T> {
     private int pageAll;
     private int pageSize;
     private int pageIndex;
-        private List<T> lists;
+    private List<T> lists;
 
     public int getPageAll() {
         return pageAll;

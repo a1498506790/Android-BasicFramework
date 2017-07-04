@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.airsaid.android_basicframework.R;
 
 import butterknife.ButterKnife;
@@ -43,7 +44,6 @@ public abstract class BaseFragment extends Fragment {
         mActivity = getActivity();
         mContext = mActivity;
         mCompatActivity = (AppCompatActivity) mActivity;
-        setHasOptionsMenu(true);
     }
 
     @Nullable
