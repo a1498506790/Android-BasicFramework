@@ -38,6 +38,7 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setSlideable(false);
         super.onCreate(savedInstanceState);
     }
 

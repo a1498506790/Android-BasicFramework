@@ -40,6 +40,12 @@ public class MainActivity extends BaseActivity {
     };
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setSlideable(false);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public int getLayoutRes() {
         return R.layout.activity_main;
     }

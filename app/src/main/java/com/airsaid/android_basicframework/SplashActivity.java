@@ -18,6 +18,12 @@ import com.airsaid.android_basicframework.utils.SPUtils;
 public class SplashActivity extends BaseActivity {
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setSlideable(false);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public int getLayoutRes() {
         return R.layout.activity_splash;
     }
