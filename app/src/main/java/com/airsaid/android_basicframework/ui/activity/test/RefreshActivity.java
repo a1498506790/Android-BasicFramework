@@ -1,5 +1,6 @@
 package com.airsaid.android_basicframework.ui.activity.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +50,7 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshLayout
 
     @Override
     public void onCreateActivity(@Nullable Bundle savedInstanceState) {
-        initToolbar("演示刷新");
+        initToolbar(getIntent().getStringExtra(Intent.EXTRA_TITLE));
         // 设置刷新监听
         mRefreshView.setOnRefreshListener(this);
         // 初始化 Adapter

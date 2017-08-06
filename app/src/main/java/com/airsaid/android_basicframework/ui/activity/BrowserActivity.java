@@ -1,5 +1,6 @@
 package com.airsaid.android_basicframework.ui.activity;
 
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -52,7 +53,7 @@ public class BrowserActivity extends BaseActivity {
         }
 
         // 设置标题
-        String title = getIntent().getExtras().getString(AppConstants.EXTRA_TITLE, "");
+        String title = getIntent().getExtras().getString(Intent.EXTRA_TITLE, "");
         if(!TextUtils.isEmpty(title)){
             setTitle(title);
         }else{

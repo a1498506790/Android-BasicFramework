@@ -1,6 +1,5 @@
 package com.airsaid.android_basicframework.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,27 +29,25 @@ public abstract class BaseFragment extends Fragment {
 
     private View mView;
     private Toolbar mToolbar;
-    private Activity mActivity;
     protected Context mContext;
     protected LayoutInflater mLayoutInflater;
-    private AppCompatActivity mCompatActivity;
 
-    protected boolean mIsVisiable; // 是否可见
-    protected boolean mIsViewCreate; // 是否已经调用了 onCreateView
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG = this.getClass().getSimpleName();
-        mActivity = getActivity();
-        mContext = mActivity;
-        mCompatActivity = (AppCompatActivity) mActivity;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mLayoutInflater = getLayoutInflater(savedInstanceState);
+        mLayoutInflater = inflater;
         mView = getLayout(inflater, container, savedInstanceState);
         return mView;
     }
@@ -58,7 +55,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mIsViewCreate = true;
         // 绑定依赖注入框架
         ButterKnife.bind(this, mView);
     }
@@ -79,23 +75,26 @@ public abstract class BaseFragment extends Fragment {
      */
     protected Toolbar initToolbar(String title){
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mCompatActivity.setSupportActionBar(mToolbar);
-        ActionBar actionBar = mCompatActivity.getSupportActionBar();
-        if(actionBar != null){
-            // 取消原有左侧标题
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
-        // 设置标题
-        TextView txtTitle = (TextView) findViewById(R.id.txt_title_title);
-        txtTitle.setText(title);
-        // 设置左侧图标
-        mToolbar.setNavigationIcon(R.mipmap.ic_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBack();
+        if(getActivity() instanceof AppCompatActivity){
+            AppCompatActivity compatActivity = (AppCompatActivity) getActivity();
+            compatActivity.setSupportActionBar(mToolbar);
+            ActionBar actionBar = compatActivity.getSupportActionBar();
+            if(actionBar != null){
+                // 取消原有左侧标题
+                actionBar.setDisplayShowTitleEnabled(false);
             }
-        });
+            // 设置标题
+            TextView txtTitle = (TextView) findViewById(R.id.txt_title_title);
+            txtTitle.setText(title);
+            // 设置左侧图标
+            mToolbar.setNavigationIcon(R.mipmap.ic_back);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBack();
+                }
+            });
+        }
         return mToolbar;
     }
 
@@ -198,19 +197,8 @@ public abstract class BaseFragment extends Fragment {
      * 销毁当前挂载的 activity
      */
     protected void finish(){
-        mActivity.finish();
+        getActivity().finish();
     }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        mIsVisiable = isVisibleToUser;
-        if(mIsVisiable && mIsViewCreate){
-            onLazyLoadData();
-        }
-    }
-
-    protected void onLazyLoadData(){}
 
     /**
      * 查找当前控件
