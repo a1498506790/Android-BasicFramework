@@ -36,8 +36,8 @@
     <string name="load_send_code">正在发送验证码&#8230;</string>
 
     <!--hint-->
-    <string name="input_hint_empty">输入的内容不能为空</string>
-    <string name="empty_data">暂无数据</string>
+    <string name="hint_input_not_empty">输入的内容不能为空</string>
+    <string name="hint_empty_data">暂无数据</string>
 
     <!--toast-->
     <string name="toast_load_fail">加载失败</string>
