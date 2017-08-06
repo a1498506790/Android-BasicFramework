@@ -9,8 +9,8 @@ import android.view.View;
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.base.BaseActivity;
 import com.airsaid.android_basicframework.base.BaseBean;
-import com.airsaid.android_basicframework.bean.TestBean;
 import com.airsaid.android_basicframework.bean.ListBean;
+import com.airsaid.android_basicframework.bean.TestBean;
 import com.airsaid.android_basicframework.http.HttpClient;
 import com.airsaid.android_basicframework.http.HttpParams;
 import com.airsaid.android_basicframework.http.MyCallback;
@@ -54,8 +54,6 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshLayout
         mRefreshView.setOnRefreshListener(this);
         // 初始化 Adapter
         initAdapter();
-        // 默认获取数据
-        showLoading();
 
         mRefreshView.postDelayed(new Runnable() {
             @Override
@@ -63,7 +61,6 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshLayout
                 onRefresh();
             }
         }, 1000);
-
     }
 
     private void initAdapter() {
@@ -99,7 +96,6 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshLayout
 
                         // 设置数据为空时显示空布局
                         if(data.getLists().size() <= 0){
-                            showEmpty();
                             return;
                         }
 
@@ -124,9 +120,9 @@ public class RefreshActivity extends BaseActivity implements PullToRefreshLayout
                     @Override
                     public void onFail(String message) {
                         mRefreshView.onFinishLoading();
-                        showError(new View.OnClickListener() {
+                        showFail(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
+                            public void onClick(View v) {
                                 showLoading();
                                 onRefresh();
                             }

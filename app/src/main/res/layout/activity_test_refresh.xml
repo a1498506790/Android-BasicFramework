@@ -6,6 +6,8 @@
 
     <include layout="@layout/toolbar"/>
 
+    <include layout="@layout/include_layout_multi_status"/>
+
     <com.airsaid.android_basicframework.widget.refresh.PullToRefreshLayout
         android:id="@+id/refreshView"
         android:layout_width="match_parent"

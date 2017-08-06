@@ -3,8 +3,10 @@ package com.airsaid.android_basicframework.widget.slideback;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -99,6 +101,11 @@ public class SlideBackActivity extends ActivityInterfaceImpl implements SlideFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        setContentView(LayoutInflater.from(this).inflate(layoutResID, null));
     }
 
     @Override

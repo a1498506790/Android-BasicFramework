@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.airsaid.android_basicframework.R;
+import com.airsaid.android_basicframework.widget.status.MultiStatusLayout;
 
 import butterknife.ButterKnife;
 
@@ -153,6 +154,36 @@ public abstract class BaseFragment extends Fragment {
         if(mToolbar != null){
             TextView txtLeftTitle = (TextView) findViewById(R.id.txt_title_left);
             txtLeftTitle.setTextSize(size);
+        }
+    }
+
+    /**
+     * 显示加载中布局
+     */
+    public void showLoading(){
+        MultiStatusLayout multiStatusLayout = (MultiStatusLayout) findViewById(R.id.layout_multi_status);
+        if(multiStatusLayout != null){
+            multiStatusLayout.setStatus(MultiStatusLayout.STATUS_LOADING);
+        }
+    }
+
+    /**
+     * 显示加载失败布局
+     */
+    public void showFail(View.OnClickListener listener){
+        MultiStatusLayout multiStatusLayout = (MultiStatusLayout) findViewById(R.id.layout_multi_status);
+        if(multiStatusLayout != null){
+            multiStatusLayout.setStatus(MultiStatusLayout.STATUS_LOAD_FAIL, listener);
+        }
+    }
+
+    /**
+     * 显示内容
+     */
+    public void showContent(){
+        MultiStatusLayout multiStatusLayout = (MultiStatusLayout) findViewById(R.id.layout_multi_status);
+        if(multiStatusLayout != null){
+            multiStatusLayout.setStatus(MultiStatusLayout.STATUS_HIDE);
         }
     }
 

@@ -1,11 +1,14 @@
 package com.airsaid.android_basicframework.ui.activity.test;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.airsaid.android_basicframework.R;
 import com.airsaid.android_basicframework.base.BaseActivity;
+import com.airsaid.android_basicframework.widget.status.MultiStatusLayout;
 
 /**
  * Created by zhouyou on 2016/11/22.
@@ -23,21 +26,22 @@ public class StatusActivity extends BaseActivity{
     @Override
     public void onCreateActivity(@Nullable Bundle savedInstanceState) {
         initToolbar("多状态布局");
-    }
-
-    public void load(View v){
-        showLoading();
-    }
-
-    public void empty(View v){
-        showEmpty();
-    }
-
-    public void error(View v){
-        showError(new View.OnClickListener() {
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                showContent();
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(checkedId == 1){
+                    showLoading();
+                }else if(checkedId == 2){
+                    showFail(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showLoading();
+                        }
+                    });
+                }else if(checkedId == 3){
+                    showContent();
+                }
             }
         });
     }
