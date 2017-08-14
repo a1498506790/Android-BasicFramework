@@ -117,7 +117,7 @@ public class UiUtils {
      */
     public static boolean checkEmpty(EditText editText) {
         if(TextUtils.isEmpty(editText.getText().toString())){
-            ToastUtils.show(UiUtils.getContext(), UiUtils.getString(R.string.input_hint_empty));
+            ToastUtils.show(UiUtils.getContext(), UiUtils.getString(R.string.toast_input_not_empty));
             return true;
         }
         return false;

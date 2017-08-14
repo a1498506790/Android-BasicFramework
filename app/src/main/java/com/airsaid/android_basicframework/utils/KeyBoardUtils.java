@@ -1,11 +1,11 @@
 package com.airsaid.android_basicframework.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 /**
  * Created by zhouyou on 2016/6/24.
@@ -16,48 +16,21 @@ import android.view.inputmethod.InputMethodManager;
 public class KeyBoardUtils {
 
     private KeyBoardUtils() {
-        mInputMethodManager = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    private static KeyBoardUtils instance;
-    private InputMethodManager mInputMethodManager;
-    private static Activity mActivity;
 
-    public static KeyBoardUtils getInstance(Activity activity) {
-        mActivity = activity;
-        if (instance == null) {
-            instance = new KeyBoardUtils();
+    /**
+     * 显示软键盘.
+     * @param context 上下文.
+     * @param view    对应要输入的 EditText.
+     */
+    public static void show(Context context, EditText view){
+        if(view.requestFocus()){
+            InputMethodManager imm = (InputMethodManager)
+                    context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
-        return instance;
-    }
-
-    /**
-     * 强制显示输入法
-     */
-    public void show() {
-        show(mActivity.getWindow().getCurrentFocus());
-    }
-
-    public void show(View view) {
-        mInputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-    }
-
-    /**
-     * 强制关闭输入法
-     */
-    public void hide() {
-        hide(mActivity.getWindow().getCurrentFocus());
-    }
-
-    public void hide(View view) {
-        mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    /**
-     * 如果输入法已经显示，那么就隐藏它；如果输入法现在没显示，那么就显示它
-     */
-    public void showOrHide() {
-        mInputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     /**
@@ -70,15 +43,5 @@ public class KeyBoardUtils {
         DisplayMetrics dm = rootView.getResources().getDisplayMetrics();
         int heightDiff = rootView.getBottom() - r.bottom;
         return heightDiff > softKeyboardHeight * dm.density;
-    }
-
-    /**
-     * 隐藏软键盘
-     */
-    public static void hideKeyboard(Context mContext, View v) {
-        if(v != null && isKeyboardShown(v)){
-            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
     }
 }
